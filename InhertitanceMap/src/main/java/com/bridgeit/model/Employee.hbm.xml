@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 Jun, 2018 12:25:53 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+
+     <class name="com.bridgeit.model.Employee" table="EMPLOYEE1">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence" />
+        </id>
+        <discriminator column="type" type="string">
+        </discriminator>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+     
+    <subclass name="com.bridgeit.model.Regular_Employee" discriminator-value="reg_emp">
+    	<property name="salary"></property>  
+		<property name="bonus"></property>  
+    </subclass>
+    
+    <subclass name="com.bridgeit.model.Contract_Employee" discriminator-value="con_emp">  
+		<property name="pay_per_hour"></property>  
+		<property name="contract_duration"></property>  
+	</subclass> 
+	
+	</class>
+ 	
+<!-- 	<class name="com.bridgeit.model.Employee" table="emp">  
+  <id name="id">  
+  <generator class="increment"></generator>  
+  </id>  
+           
+  <property name="name"></property>  
+            
+  <union-subclass name="com.bridgeit.model.Regular_Employee" table="reg_emp">  
+  <property name="salary"></property>  
+  <property name="bonus"></property>  
+  </union-subclass>  
+            
+  <union-subclass name="com.bridgeit.model.Contract_Employee" table="cont_emp">  
+  <property name="pay_per_hour"></property>  
+  <property name="contract_duration"></property>  
+  </union-subclass>  
+            
+  </class>  
+ -->	 
+ 
+<!--  <class name="com.bridgeit.model.Employee" table="emp1">  
+  <id name="id">  
+  <generator class="increment"></generator>  
+  </id>  
+  
+  <property name="name"></property>  
+  
+  <joined-subclass name="com.bridgeit.model.Regular_Employee" table="reg_emp1">  
+  <key column="eid"></key>  
+  <property name="salary"></property>  
+  <property name="bonus"></property>  
+  </joined-subclass>  
+   
+  <joined-subclass name="com.bridgeit.model.Contract_Employee" table="cont_emp1">  
+  <key column="eid"></key>  
+  <property name="pay_per_hour"></property>  
+  <property name="contract_duration"></property>  
+  </joined-subclass>  
+  
+  </class>  
+ --> 
+</hibernate-mapping>
